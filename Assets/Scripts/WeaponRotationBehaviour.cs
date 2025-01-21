@@ -16,6 +16,8 @@ public class WeaponRotationBehaviour : MonoBehaviour
     [SerializeField] private GameObject m_HostPos;
     [SerializeField] private GameObject m_CamPos;
 
+    private bool m_isWeaponFixed;
+
     void Start()
     {
 
@@ -23,11 +25,14 @@ public class WeaponRotationBehaviour : MonoBehaviour
         SetActiveWeapon(0);
     }
 
-    void Update()
+    private void Update()
     {
-        
         CheckSkillButtons();
         if (!m_IsAnySkillActive) CheckWeaponButtons();
+    }
+
+    void FixedUpdate()
+    {
         SetAngleForWeapon();
         SetPositionForWeapon();
     }
@@ -60,6 +65,7 @@ public class WeaponRotationBehaviour : MonoBehaviour
 
     private void SetAngleForWeapon()
     {
+        if (m_isWeaponFixed) return;
         float angle;
         float result;
         Vector2 dir;
@@ -96,6 +102,9 @@ public class WeaponRotationBehaviour : MonoBehaviour
 
     private void CheckWeaponButtons()
     {
+        if (Input.GetMouseButtonDown(0)) { m_isWeaponFixed = true; }
+        if (Input.GetMouseButtonUp(0)) { m_isWeaponFixed = false; }
+
         if (Input.GetKey(KeyCode.Alpha1)) { SetActiveWeapon(0); return; }
         if (Input.GetKey(KeyCode.Alpha2)) { SetActiveWeapon(1); return; }
     }
