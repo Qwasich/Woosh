@@ -7,6 +7,7 @@ public class WeaponRotationBehaviour : MonoBehaviour
     private float m_MovementSpeed = 10;
     private float m_RotationSpeed = 45;
     private float m_MaxDistance = 10;
+    [SerializeField][Range(0, 10)] private float m_MinDistance = 0.5f;
 
     private int m_ActiveWeaponIndex = 0;
     private bool m_IsAnySkillActive = false;
@@ -66,6 +67,9 @@ public class WeaponRotationBehaviour : MonoBehaviour
     private void SetAngleForWeapon()
     {
         if (m_isWeaponFixed) return;
+
+        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (m_MinDistance > Vector2.Distance(m_CamPos.transform.position, pos)) return;
         float angle;
         float result;
         Vector2 dir;
