@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c5e83120a160f418e134b138f5c727, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  MovementSpeed: 50
-  RotationSpeed: 720
+  MovementSpeed: 25
+  RotationSpeed: 360
   MaxDistance: 10
