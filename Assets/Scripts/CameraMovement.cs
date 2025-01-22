@@ -6,14 +6,11 @@ public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private float m_MovementSpeed = 10;
     [SerializeField] private GameObject m_Weapon;
-    [SerializeField] private GameObject m_Host;
 
 
-    private Vector2 m_HostPosition;
 
     private void Start()
     {
-        SetPostitionToHost();
         if (m_Weapon == null) Debug.LogError("WEAPON ISN'T SET FOR CAMERA MOVEMENT");
     }
 
@@ -22,11 +19,6 @@ public class CameraMovement : MonoBehaviour
         SetPosition();
     }
 
-    private void SetPostitionToHost()
-    {
-        if (m_Host != null) m_HostPosition = m_Host.transform.position;
-        else m_HostPosition = Vector2.zero;
-    }
 
     private void SetPosition()
     {

@@ -14,10 +14,12 @@ public class WeaponRotationBehaviour : MonoBehaviour
 
     [SerializeField] private List<WeaponProperties> m_Weapons;
 
-    [SerializeField] private GameObject m_HostPos;
-    [SerializeField] private GameObject m_CamPos;
+    [SerializeField] private Transform m_HostPos;
+    [SerializeField] private Transform m_CamPos;
 
     private bool m_isWeaponFixed;
+    Vector3 posn;
+    float angle;
 
     void Start()
     {
@@ -44,20 +46,27 @@ public class WeaponRotationBehaviour : MonoBehaviour
     {
 
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 posn;
+        angle = Vector2.SignedAngle(Vector2.right, pos - m_HostPos.position);
 
-        if (m_MaxDistance >= Vector2.Distance(m_HostPos.transform.position, pos))
+        if (m_MaxDistance >= Vector2.Distance(m_HostPos.position, pos))
         {
             posn = new Vector3(pos.x, pos.y, 0);
             transform.position = Vector3.MoveTowards(transform.position, posn, m_MovementSpeed * Time.deltaTime);
         }
         else
         {
-            posn = new Vector3(Mathf.Cos(Vector2.SignedAngle(Vector2.right, pos) * Mathf.Deg2Rad) * m_MaxDistance, Mathf.Sin(Vector2.SignedAngle(Vector2.right, pos) * Mathf.Deg2Rad) * m_MaxDistance, 0);
+            
+            float x = Mathf.Cos(angle * Mathf.Deg2Rad) * m_MaxDistance;
+            float y = Mathf.Sin(angle * Mathf.Deg2Rad) * m_MaxDistance;
+
+            posn = new Vector3(x, y, 0) + m_HostPos.position;
             transform.position = Vector3.MoveTowards(transform.position, posn, m_MovementSpeed * Time.deltaTime);
+
+            //posn = new Vector3(Mathf.Cos(Vector2.SignedAngle(m_HostPos.right, pos) * Mathf.Deg2Rad) * m_MaxDistance, Mathf.Sin(Vector2.SignedAngle(m_HostPos.right, pos) * Mathf.Deg2Rad) * m_MaxDistance, 0);
+            //transform.position = posn;
         }
 
-        if (m_MaxDistance * 2 < Vector2.Distance(Vector2.zero, transform.position))
+        if (m_MaxDistance * 2 < Vector2.Distance(m_HostPos.position, transform.position))
         {
             transform.position = m_HostPos.transform.position;
         }
@@ -69,21 +78,21 @@ public class WeaponRotationBehaviour : MonoBehaviour
         if (m_isWeaponFixed) return;
 
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (m_MinDistance > Vector2.Distance(m_CamPos.transform.position, pos)) return;
+        if (m_MinDistance > Vector2.Distance(m_CamPos.position, pos)) return;
         float angle;
         float result;
         Vector2 dir;
         Vector2 campos;
-        campos = m_CamPos.transform.position;
+        campos = m_CamPos.position;
 
         switch(m_ActiveWeaponIndex)
         {
             case 0: { dir = (Vector2)transform.position - campos; break;}
-            case 1: { dir = (Vector2)transform.position; break;}
-            default: { dir = (Vector2)transform.position; break; }
+            case 1: { dir = transform.position - m_HostPos.position; break;}
+            default: { dir = transform.position - m_HostPos.position; break; }
         }
         
-        angle = Vector2.SignedAngle(m_CamPos.transform.right, dir);
+        angle = Vector2.SignedAngle(m_CamPos.right, dir);
         result = Mathf.MoveTowardsAngle(transform.rotation.eulerAngles.z, angle, m_RotationSpeed * Time.deltaTime);
 
         transform.rotation = Quaternion.Euler(0, 0, result);
