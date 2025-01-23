@@ -10,8 +10,6 @@ public class WeaponPositionReturner : MonoBehaviour
 
     [SerializeField] private Rigidbody2D m_Rb;
 
-    float angle1;
-    float angle2;
     float angleresult;
 
     void FixedUpdate()

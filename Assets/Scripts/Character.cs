@@ -45,10 +45,13 @@ public class Character : MonoBehaviour
     {
         if (m_IsInvincible || m_Timer > 0) return;
         if (m_CurrentHealth <= 0) return;
+        if (damage <= 0) return;
 
-        if (damage <= 0) damage = 1;
+        Debug.Log("damaged");
         m_CurrentHealth -= damage;
         if (m_CurrentHealth <= 0) OnKill();
+
+        m_Timer = m_InvincibilityTimer;
         return;
     }
 

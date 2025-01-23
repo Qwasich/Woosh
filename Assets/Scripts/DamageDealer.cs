@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ public class DamageDealer : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D m_WeaponRB;
 
-    [SerializeField][Range(0,int.MaxValue)] private float m_MaxDamage;
+    [SerializeField][Range(0, int.MaxValue)] private float m_MaxDamage;
     private float m_CalculatedDamage;
 
     private float m_ImpulsiveVelocity;
@@ -19,9 +18,31 @@ public class DamageDealer : MonoBehaviour
 
     private List<float> m_VelocityList;
 
+    [SerializeField] private Transform m_RayPos;
+    [SerializeField] private Character m_Host;
+
+    Character m_LastChar = null;
+
     private void Start()
     {
         m_VelocityList = new List<float>(10);
+    }
+
+    private void Update()
+    {
+        RaycastHit2D rayHit = Physics2D.Raycast(m_RayPos.position, transform.right,transform.localScale.x);
+
+        if (rayHit)
+        {
+            Character creat = rayHit.collider.transform.root.GetComponent<Character>();
+
+            if (creat != null && m_LastChar != creat && creat != m_Host)
+            {
+                m_LastChar = creat;
+                (creat as CharacterAnimated).TakeDamage((int)m_CalculatedDamage);
+            }
+            if (creat == null) m_LastChar = null;
+        }
     }
 
     private void FixedUpdate()
@@ -56,5 +77,4 @@ public class DamageDealer : MonoBehaviour
         else if (m_CalculatedDamage < 1) m_CalculatedDamage = 0;
         else m_CalculatedDamage = Mathf.FloorToInt(m_CalculatedDamage);
     }
-
 }
