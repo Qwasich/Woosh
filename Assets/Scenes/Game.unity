@@ -1118,7 +1118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 672668831}
   - component: {fileID: 672668832}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1359,7 +1359,7 @@ GameObject:
   - component: {fileID: 728728771}
   - component: {fileID: 728728772}
   - component: {fileID: 728728773}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: VisualModelShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1376,7 +1376,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.30153713, y: 1.7760861, z: 1}
+  m_LocalScale: {x: 0.42411196, y: 2.2664635, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2111141113}
@@ -1460,7 +1460,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 5
   m_AngularDrag: 5
   m_GravityScale: 0
@@ -1821,7 +1821,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -1883,7 +1883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Nickname: Goblin
-  m_MaxHealth: 20
+  m_MaxHealth: 1000
   m_IsInvincible: 0
   m_InvincibilityTimer: 0.2
 --- !u!114 &1660592907
@@ -2173,7 +2173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2111141113}
   - component: {fileID: 2111141114}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}

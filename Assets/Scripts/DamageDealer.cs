@@ -30,7 +30,7 @@ public class DamageDealer : MonoBehaviour
 
     private void Update()
     {
-        RaycastHit2D rayHit = Physics2D.Raycast(m_RayPos.position, transform.right,transform.localScale.x);
+        RaycastHit2D rayHit = Physics2D.BoxCast(m_RayPos.position, transform.localScale,0f,transform.right);
 
         if (rayHit)
         {
@@ -38,6 +38,7 @@ public class DamageDealer : MonoBehaviour
 
             if (creat != null && m_LastChar != creat && creat != m_Host)
             {
+                Debug.Log("uh");
                 m_LastChar = creat;
                 (creat as CharacterAnimated).TakeDamage((int)m_CalculatedDamage);
             }
