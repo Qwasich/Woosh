@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Character : MonoBehaviour
 {
@@ -31,6 +33,8 @@ public class Character : MonoBehaviour
     public float InincibilityTimer => m_InvincibilityTimer;
     protected float m_Timer;
 
+    public UnityAction DeathTrigger;
+
     protected virtual void Awake()
     {
         m_CurrentHealth = m_MaxHealth;
@@ -46,8 +50,6 @@ public class Character : MonoBehaviour
         if (m_IsInvincible || m_Timer > 0) return;
         if (m_CurrentHealth <= 0) return;
         if (damage <= 0) return;
-
-        Debug.Log("damaged");
         m_CurrentHealth -= damage;
         if (m_CurrentHealth <= 0) OnKill();
 
@@ -68,6 +70,12 @@ public class Character : MonoBehaviour
 
     protected virtual void OnKill()
     {
+        DeathTrigger?.Invoke();
         Destroy(gameObject);
     }
+
+#if UNITY_EDITOR
+    [ContextMenu(nameof(KILL))]
+    private void KILL() => OnKill();
+#endif
 }

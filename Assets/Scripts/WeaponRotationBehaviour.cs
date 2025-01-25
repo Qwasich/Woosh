@@ -36,6 +36,7 @@ public class WeaponRotationBehaviour : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (m_HostPos == null) return;
         SetAngleForWeapon();
         SetPositionForWeapon();
     }
@@ -46,6 +47,7 @@ public class WeaponRotationBehaviour : MonoBehaviour
     {
 
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
         angle = Vector2.SignedAngle(Vector2.right, pos - m_HostPos.position);
 
         if (m_MaxDistance >= Vector2.Distance(m_HostPos.position, pos))

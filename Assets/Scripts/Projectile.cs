@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -9,6 +10,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] private int m_Damage;
 
     [SerializeField] private int m_MaxLifetime = 3;
+
+    private string m_IgnoredTag;
 
     private Character m_Parent;
     /// <summary>
@@ -23,18 +26,19 @@ public class Projectile : MonoBehaviour
         float stepLength = Time.deltaTime * m_ProjectileVelocity;
         Vector2 step = transform.up * stepLength;
 
-        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, transform.up, stepLength);
+        RaycastHit2D rayHit = Physics2D.BoxCast(transform.position, transform.localScale, 0, transform.up);
 
         if (rayHit)
         {
             Character creat = rayHit.collider.transform.root.GetComponent<Character>();
 
-            if (creat != null && creat != m_Parent)
+            if (creat != null && creat != m_Parent && !creat.CompareTag("Enemy"))
             {
                 creat.TakeDamage(m_Damage);
                 OnLifetimeEnd();
             }
-            OnLifetimeEnd();
+            else if (creat == null) OnLifetimeEnd();
+
         }
 
         m_Timer += Time.deltaTime;
@@ -52,6 +56,7 @@ public class Projectile : MonoBehaviour
 
     private void OnLifetimeEnd()
     {
+        Debug.Log("destroyed");
         Destroy(gameObject);
 
     }
@@ -62,6 +67,12 @@ public class Projectile : MonoBehaviour
     /// <param name="parent">Родитель</param>
     public void SetParentShooter(Character parent)
     {
+        Debug.Log("parent set");
         m_Parent = parent;
+    }
+
+    public void SetTagsToIgnore(string tag)
+    {
+
     }
 }

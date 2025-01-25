@@ -16,6 +16,9 @@ public class BehaviourNavmeshMovement : MonoBehaviour
 
     private void Update()
     {
+        if (m_Target == null) return;
         m_Agent.SetDestination(m_Target.position);
     }
+
+    public void SetTarget(Transform t) => m_Target = t;
 }

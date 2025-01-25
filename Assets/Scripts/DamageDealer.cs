@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class DamageDealer : MonoBehaviour
@@ -28,23 +29,6 @@ public class DamageDealer : MonoBehaviour
         m_VelocityList = new List<float>(10);
     }
 
-    private void Update()
-    {
-        RaycastHit2D rayHit = Physics2D.BoxCast(m_RayPos.position, transform.localScale,0f,transform.right);
-
-        if (rayHit)
-        {
-            Character creat = rayHit.collider.transform.root.GetComponent<Character>();
-
-            if (creat != null && m_LastChar != creat && creat != m_Host)
-            {
-                Debug.Log("uh");
-                m_LastChar = creat;
-                (creat as CharacterAnimated).TakeDamage((int)m_CalculatedDamage);
-            }
-            if (creat == null) m_LastChar = null;
-        }
-    }
 
     private void FixedUpdate()
     {
@@ -69,6 +53,21 @@ public class DamageDealer : MonoBehaviour
 
         }
 
+
+        RaycastHit2D rayHit = Physics2D.BoxCast(m_RayPos.position, transform.localScale, 0f, transform.right);
+
+        if (rayHit)
+        {
+            Character creat = rayHit.collider.transform.root.GetComponent<Character>();
+
+            if (creat != null && m_LastChar != creat && creat != m_Host)
+            {
+                if (Vector2.Distance(transform.position, creat.transform.position) > transform.localScale.x) return;
+                m_LastChar = creat;
+                (creat as CharacterAnimated).TakeDamage((int)m_CalculatedDamage);
+            }
+            if (creat == null) m_LastChar = null;
+        }
     }
 
     private void CalculateDamage()
@@ -78,4 +77,5 @@ public class DamageDealer : MonoBehaviour
         else if (m_CalculatedDamage < 1) m_CalculatedDamage = 0;
         else m_CalculatedDamage = Mathf.FloorToInt(m_CalculatedDamage);
     }
+
 }
