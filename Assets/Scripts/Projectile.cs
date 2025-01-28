@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] private int m_MaxLifetime = 3;
 
-    private string m_IgnoredTag;
+    RaycastHit2D rayHit;
 
     private Character m_Parent;
     /// <summary>
@@ -25,18 +25,23 @@ public class Projectile : MonoBehaviour
         float stepLength = Time.deltaTime * m_ProjectileVelocity;
         Vector2 step = transform.up * stepLength;
 
-        RaycastHit2D rayHit = Physics2D.BoxCast(transform.position, transform.localScale, 0, transform.up);
+        rayHit = Physics2D.BoxCast(transform.position, transform.localScale, 0, transform.up);
 
         if (rayHit)
         {
             Character creat = rayHit.collider.transform.root.GetComponent<Character>();
+            Transform go = rayHit.collider.GetComponent<Transform>();
 
-            if (creat != null && creat != m_Parent && !creat.CompareTag("Enemy"))
+            if (!go.CompareTag("Sword") && !go.CompareTag("SmallObject") && !go.CompareTag("Enemy"))
             {
-                creat.TakeDamage(m_Damage);
-                OnLifetimeEnd();
+
+                if (creat != null && creat != m_Parent)
+                {
+                    creat.TakeDamage(m_Damage);
+                    OnLifetimeEnd();
+                }
+                else if (creat == null) OnLifetimeEnd();
             }
-            else if (creat == null) OnLifetimeEnd();
 
         }
 
@@ -55,7 +60,6 @@ public class Projectile : MonoBehaviour
 
     private void OnLifetimeEnd()
     {
-        Debug.Log("destroyed");
         Destroy(gameObject);
 
     }
@@ -66,7 +70,6 @@ public class Projectile : MonoBehaviour
     /// <param name="parent">Родитель</param>
     public void SetParentShooter(Character parent)
     {
-        Debug.Log("parent set");
         m_Parent = parent;
     }
 
