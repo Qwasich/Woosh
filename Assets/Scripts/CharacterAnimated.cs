@@ -36,6 +36,10 @@ public class CharacterAnimated : Character
     protected override void Update()
     {
         base.Update();
+
+        if (m_Attack != null && m_Attack.AllowedToAttack && !m_Agent.isStopped) m_Agent.isStopped = true;
+        if (m_Attack != null && !m_Attack.AllowedToAttack && m_Agent.isStopped) m_Agent.isStopped = false;
+
         m_AnimationTimer += Time.deltaTime;
 
         if (m_AnimationTimer >= m_AnimationSpeed)
@@ -78,7 +82,7 @@ public class CharacterAnimated : Character
         
 
         if (m_Attack != null && m_Attack.m_CurrentTarget != Vector3.zero && m_Attack.IsRanged) target = m_Attack.m_CurrentTarget - transform.position;
-        else if (m_Attack != null && !m_Attack.AllowedToAttack && !m_Attack.IsRanged) target = m_Agent.pathEndPosition - transform.position;
+        else if (m_Attack != null && m_Attack.AllowedToAttack && !m_Attack.IsRanged) target = m_Agent.pathEndPosition - transform.position;
         else if (m_Attack != null && m_Agent != null && m_Agent.velocity.magnitude <= 0.2) target = m_Agent.pathEndPosition - transform.position;
         else target = m_Agent.velocity;
         transform.up = target;

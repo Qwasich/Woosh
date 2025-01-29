@@ -184,7 +184,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5dc1d9d9734b7da40b79e395a762fdf7, type: 3}
   - {fileID: 21300000, guid: 5dc1d9d9734b7da40b79e395a762fdf7, type: 3}
   - {fileID: 21300000, guid: 5dc1d9d9734b7da40b79e395a762fdf7, type: 3}
-  m_AnimationSpeed: 0.2
+  - {fileID: 21300000, guid: 5dc1d9d9734b7da40b79e395a762fdf7, type: 3}
+  - {fileID: 21300000, guid: 5dc1d9d9734b7da40b79e395a762fdf7, type: 3}
+  - {fileID: 21300000, guid: 5dc1d9d9734b7da40b79e395a762fdf7, type: 3}
+  - {fileID: 21300000, guid: 5dc1d9d9734b7da40b79e395a762fdf7, type: 3}
+  - {fileID: 21300000, guid: 5dc1d9d9734b7da40b79e395a762fdf7, type: 3}
+  m_AnimationSpeed: 0.3
 --- !u!195 &8536433090397900330
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -195,7 +200,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 0.5
-  m_Speed: 2.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0
@@ -302,8 +307,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Projectile: {fileID: 0}
   m_IsRanged: 0
+  m_IsSelfDestrruct: 0
   m_Damage: 1
-  m_AttackCooldown: 1
+  m_AttackCooldown: 2
   m_Offset: {fileID: 0}
   m_CurrentTarget: {x: 0, y: 0, z: 0}
 --- !u!1 &5584494512362337391

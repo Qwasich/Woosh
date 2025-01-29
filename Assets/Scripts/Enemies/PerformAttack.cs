@@ -44,6 +44,7 @@ public class PerformAttack : MonoBehaviour
         if (!m_AllowedToAttack) return;
 
         m_Timer += Time.deltaTime;
+        m_CurrentTarget = m_Target.First().transform.position;
         if (m_Timer < m_AttackCooldown) return;
 
         if (m_IsRanged && m_Projectile != null)
@@ -54,12 +55,10 @@ public class PerformAttack : MonoBehaviour
             if (m_Offset != null) p.transform.position = m_Offset.transform.position;
             else p.transform.position = m_Host.transform.position;
             p.transform.up = m_Target.First().transform.position - transform.position;
-            m_CurrentTarget = m_Target.First().transform.position;
             m_Timer = 0;
         }
         else
         {
-            m_CurrentTarget = m_Target.First().transform.position;
             m_Target.First().TakeDamage(m_Damage);
             m_Timer = 0;
 
