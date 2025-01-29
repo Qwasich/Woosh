@@ -37,6 +37,7 @@ Transform:
   m_Children:
   - {fileID: 9011868031455786537}
   - {fileID: 446185676545104690}
+  - {fileID: 7929927247392110092}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8607452509924334181
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86b45d1695abd67448cdbdc225451784, type: 3}
   m_Color: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -138,7 +139,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.1
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -169,6 +170,21 @@ MonoBehaviour:
   m_MaxHealth: 10
   m_IsInvincible: 0
   m_InvincibilityTimer: 0.2
+  m_Agent: {fileID: 1084599017678189705}
+  m_Body: {fileID: 8607452509924334181}
+  m_Attack: {fileID: 9170185691751682204}
+  m_StandingSprite: {fileID: 21300000, guid: 86b45d1695abd67448cdbdc225451784, type: 3}
+  m_MoveSprites:
+  - {fileID: 21300000, guid: 66f162d8a42cf484ba8d4b4e99acdd82, type: 3}
+  - {fileID: 21300000, guid: 86b45d1695abd67448cdbdc225451784, type: 3}
+  - {fileID: 21300000, guid: 6cadc9971d3bdb24db357997917e4ade, type: 3}
+  - {fileID: 21300000, guid: 86b45d1695abd67448cdbdc225451784, type: 3}
+  m_AttackSprites:
+  - {fileID: 21300000, guid: b1b269df4f6f8164388b84fecf8e906f, type: 3}
+  - {fileID: 21300000, guid: b1b269df4f6f8164388b84fecf8e906f, type: 3}
+  - {fileID: 21300000, guid: ed0e7d9f55327134b9d66d85b4cdebe7, type: 3}
+  - {fileID: 21300000, guid: ed0e7d9f55327134b9d66d85b4cdebe7, type: 3}
+  m_AnimationSpeed: 0.2
 --- !u!195 &1084599017678189705
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -179,7 +195,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 0.5
-  m_Speed: 0.9
+  m_Speed: 1.9
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0
@@ -204,6 +220,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 0}
+--- !u!1 &4898074613784933604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7929927247392110092}
+  m_Layer: 0
+  m_Name: Offset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7929927247392110092
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4898074613784933604}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.32, y: 0.36, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2912369540191572174}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6351281254024200757
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +309,7 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 183
+    m_Bits: 247
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -285,9 +332,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Projectile: {fileID: 9051732296937498274, guid: df582f3245a81df44b4c5144a8cd85d0, type: 3}
-  IsRanged: 1
+  m_IsRanged: 1
   m_Damage: 1
-  m_AttackCooldown: 1
+  m_AttackCooldown: 0.8
+  m_Offset: {fileID: 7929927247392110092}
+  m_CurrentTarget: {x: 0, y: 0, z: 0}
 --- !u!1 &9139490999347071883
 GameObject:
   m_ObjectHideFlags: 0

@@ -80,8 +80,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.032492053, g: 0.5283019, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 5dc1d9d9734b7da40b79e395a762fdf7, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -138,7 +138,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.1
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -169,6 +169,22 @@ MonoBehaviour:
   m_MaxHealth: 20
   m_IsInvincible: 0
   m_InvincibilityTimer: 0.2
+  m_Agent: {fileID: 8536433090397900330}
+  m_Body: {fileID: 2008223521849488533}
+  m_Attack: {fileID: 1439001476651258306}
+  m_StandingSprite: {fileID: 21300000, guid: 5dc1d9d9734b7da40b79e395a762fdf7, type: 3}
+  m_MoveSprites:
+  - {fileID: 21300000, guid: e15ab12cbd7269a4ba22c95554dd24d4, type: 3}
+  - {fileID: 21300000, guid: 5dc1d9d9734b7da40b79e395a762fdf7, type: 3}
+  - {fileID: 21300000, guid: 7347b60e12157204c883494f3d099231, type: 3}
+  - {fileID: 21300000, guid: 5dc1d9d9734b7da40b79e395a762fdf7, type: 3}
+  m_AttackSprites:
+  - {fileID: 21300000, guid: e2a68334f873c86448ec0dfe36a21fed, type: 3}
+  - {fileID: 21300000, guid: ef52652e5faab084a8f35dc34b7f898f, type: 3}
+  - {fileID: 21300000, guid: 5dc1d9d9734b7da40b79e395a762fdf7, type: 3}
+  - {fileID: 21300000, guid: 5dc1d9d9734b7da40b79e395a762fdf7, type: 3}
+  - {fileID: 21300000, guid: 5dc1d9d9734b7da40b79e395a762fdf7, type: 3}
+  m_AnimationSpeed: 0.2
 --- !u!195 &8536433090397900330
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -179,11 +195,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 0.5
-  m_Speed: 1.5
+  m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0
-  m_StoppingDistance: 1.5
+  m_StoppingDistance: 1.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -262,7 +278,7 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 247
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -271,7 +287,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.8
+  m_Radius: 1.4
 --- !u!114 &1439001476651258306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,9 +301,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Projectile: {fileID: 0}
-  IsRanged: 0
+  m_IsRanged: 0
   m_Damage: 1
   m_AttackCooldown: 1
+  m_Offset: {fileID: 0}
+  m_CurrentTarget: {x: 0, y: 0, z: 0}
 --- !u!1 &5584494512362337391
 GameObject:
   m_ObjectHideFlags: 0

@@ -81,7 +81,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 3.276935, y: 0.52}
+  m_Size: {x: 3.5116236, y: 0.90231365}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -121,10 +121,10 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.42, y: 0, z: 0.44, w: 0}
+    border: {x: 0.42, y: 0.13, z: 0.44, w: 0.19999999}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2.42, y: 0.52}
-    newSize: {x: 3.276935, y: 0.52}
+    newSize: {x: 3.5116236, y: 0.90231365}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -172,6 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Nickname: wall
-  m_MaxHealth: 10
+  m_MaxHealth: 25
   m_IsInvincible: 0
   m_InvincibilityTimer: 0.05

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -24,8 +25,9 @@ public class Projectile : MonoBehaviour
     {
         float stepLength = Time.deltaTime * m_ProjectileVelocity;
         Vector2 step = transform.up * stepLength;
-
-        rayHit = Physics2D.BoxCast(transform.position, transform.localScale, 0, transform.up);
+        /*
+        rayHit = Physics2D.BoxCast(transform.position, , 0, transform.up);
+        //rayHit = Physics2D.Raycast(transform.position, transform.up, transform.localScale.y);
 
         if (rayHit)
         {
@@ -43,7 +45,7 @@ public class Projectile : MonoBehaviour
                 else if (creat == null) OnLifetimeEnd();
             }
 
-        }
+        }*/
 
         m_Timer += Time.deltaTime;
 
@@ -52,7 +54,7 @@ public class Projectile : MonoBehaviour
             OnLifetimeEnd();
         }
 
-        transform.position += new Vector3(step.x, step.y, 0);
+        transform.position += (Vector3)step;
 
         
 
@@ -75,6 +77,20 @@ public class Projectile : MonoBehaviour
 
     public void SetTagsToIgnore(string tag)
     {
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Sword") || col.CompareTag("SmallObject") || col.CompareTag("Enemy")) return;
+        col.transform.TryGetComponent<Character>(out var c);
+
+        if (c != null && c != m_Parent)
+        {
+            c.TakeDamage(m_Damage);
+            OnLifetimeEnd();
+        }
+        else if (c == null) OnLifetimeEnd();
 
     }
 }
