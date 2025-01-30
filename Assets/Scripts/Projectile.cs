@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -62,7 +60,8 @@ public class Projectile : MonoBehaviour
 
     private void OnLifetimeEnd()
     {
-        Destroy(gameObject);
+        Debug.Log("HUH");
+        Destroy(gameObject); 
 
     }
 
@@ -84,11 +83,12 @@ public class Projectile : MonoBehaviour
     {
         if (col.CompareTag("Sword") || col.CompareTag("SmallObject") || col.CompareTag("Enemy")) return;
         col.transform.TryGetComponent<Character>(out var c);
-
+        Debug.Log("huh");
         if (c != null && c != m_Parent)
         {
             c.TakeDamage(m_Damage);
             OnLifetimeEnd();
+            
         }
         else if (c == null) OnLifetimeEnd();
 

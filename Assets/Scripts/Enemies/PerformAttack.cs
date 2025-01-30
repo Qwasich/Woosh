@@ -30,7 +30,7 @@ public class PerformAttack : MonoBehaviour
 
     private void Awake()
     {   
-        m_Host = transform.root.GetComponent<Character>();
+        m_Host = transform.root.GetComponentInChildren<Character>();
         m_CurrentTarget = Vector3.zero;
     }
 
@@ -46,7 +46,7 @@ public class PerformAttack : MonoBehaviour
         m_Timer += Time.deltaTime;
         m_CurrentTarget = m_Target.First().transform.position;
         if (m_Timer < m_AttackCooldown) return;
-
+        if (m_Host == null) return;
         if (m_IsRanged && m_Projectile != null)
         {
             Projectile p = Instantiate(m_Projectile).GetComponent<Projectile>();

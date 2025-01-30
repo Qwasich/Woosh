@@ -58,7 +58,7 @@ public class DamageDealer : MonoBehaviour
 
         if (rayHit)
         {
-            Character creat = rayHit.collider.transform.root.GetComponent<Character>();
+            Character creat = rayHit.collider.transform.root.GetComponentInChildren<Character>();
 
             if (creat != null && m_LastChar != creat && creat != m_Host)
             {

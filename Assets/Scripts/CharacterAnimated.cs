@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -5,6 +6,7 @@ using UnityEngine.Events;
 public class CharacterAnimated : Character
 {
     [SerializeField] private NavMeshAgent m_Agent;
+    public NavMeshAgent Agent => m_Agent;
 
     [SerializeField] private SpriteRenderer m_Body;
 
@@ -28,8 +30,11 @@ public class CharacterAnimated : Character
 
     private Vector3 target;
 
+    private MapGeneralSpawner m_Spawner;
+
     protected override void Awake()
     {
+        m_Body.sprite = m_StandingSprite;
         base.Awake();
     }
 
@@ -78,14 +83,37 @@ public class CharacterAnimated : Character
             m_CurrentSprite = 0;
             m_Animate = true;
         }
+        if (m_Agent.hasPath == false && !m_Agent.isStopped) m_Body.sprite = m_StandingSprite;
 
-        
+
 
         if (m_Attack != null && m_Attack.m_CurrentTarget != Vector3.zero && m_Attack.IsRanged) target = m_Attack.m_CurrentTarget - transform.position;
         else if (m_Attack != null && m_Attack.AllowedToAttack && !m_Attack.IsRanged) target = m_Agent.pathEndPosition - transform.position;
         else if (m_Attack != null && m_Agent != null && m_Agent.velocity.magnitude <= 0.2) target = m_Agent.pathEndPosition - transform.position;
         else target = m_Agent.velocity;
-        transform.up = target;
+        
+        if(m_Agent.hasPath) transform.up = target;
+
+        transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z);
+    }
+
+    public void SetSpawner(MapGeneralSpawner sp)
+    {
+        m_Spawner = sp;
+    }
+
+    public void ReturnSpawner()
+    {
+        if (m_Spawner != null) m_Spawner.RemoveCharacterFromList(this);
+
+    }
+
+
+    protected override void OnKill(NavMeshAgent ogj)
+    {
+        ReturnSpawner();
+        ogj = m_Agent;
+        base.OnKill(ogj);
     }
 
 

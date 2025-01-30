@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class Character : MonoBehaviour
@@ -68,7 +69,13 @@ public class Character : MonoBehaviour
     protected virtual void OnKill()
     {
         DeathTrigger?.Invoke();
-        Destroy(gameObject);
+        Destroy(transform.root.gameObject);
+    }
+
+    protected virtual void OnKill(NavMeshAgent ogj)
+    {
+        DeathTrigger?.Invoke();
+        Destroy(ogj.gameObject);
     }
 
 #if UNITY_EDITOR

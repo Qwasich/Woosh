@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class BehaviourNavmeshMovement : MonoBehaviour
 {
     [SerializeField] Transform m_Target;
+    public Transform Target => m_Target;
 
     NavMeshAgent m_Agent;
 
@@ -12,6 +13,7 @@ public class BehaviourNavmeshMovement : MonoBehaviour
         m_Agent = GetComponent<NavMeshAgent>();
         m_Agent.updatePosition = true;
         m_Agent.updateUpAxis = false;
+        m_Agent.updateRotation = false;
     }
 
     private void Update()

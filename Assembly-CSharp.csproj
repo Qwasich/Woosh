@@ -60,6 +60,7 @@
     <Analyzer Include="C:\Program Files\2022.3.20f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\NavMeshComponents\TargetSetter.cs" />
     <Compile Include="Assets\Scripts\Tasks\GameMaster.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\WeaponMovementSettings.cs" />
     <Compile Include="Assets\Scripts\Enemies\PerformAttack.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\DamageDealer.cs" />
     <Compile Include="Assets\Scripts\WeaponProperties.cs" />
+    <Compile Include="Assets\Scripts\Spawner\MapGeneralSpawner.cs" />
     <Compile Include="Assets\Scripts\Enemies\BehaviourNavmeshMovement.cs" />
     <Compile Include="Assets\Scripts\CharacterAnimated.cs" />
     <Compile Include="Assets\Scripts\Tasks\TaskBase.cs" />
