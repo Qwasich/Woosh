@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class TaskBase : MonoBehaviour
 {
-    private GameMaster m_Master;
+    protected GameMaster m_Master;
+    protected bool m_IsDone = false;
 
     public virtual void SetActive(GameMaster m)
     {
@@ -15,6 +16,11 @@ public class TaskBase : MonoBehaviour
 
         // деактивация скриптов задачи
         m_Master.AdvanceTask();
+    }
+
+    public virtual bool IsTaskDone()
+    {
+        return false;
     }
 
 

@@ -927,6 +927,58 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4436062666447637530, guid: c664c95c6b5a0e04f89c63429a680418, type: 3}
   m_PrefabInstance: {fileID: 29338235}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &30137619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 30137620}
+  - component: {fileID: 30137621}
+  m_Layer: 0
+  m_Name: Task Eradicate 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &30137620
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30137619}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 58.91, y: 8.45, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 380643369}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &30137621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30137619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b77fa6bc0c8ce94aa03ef68214e2c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Units:
+  - m_Creature: {fileID: 8852991875040718518, guid: 23f5f4e65cd854948ac44bfa0156529a, type: 3}
+    m_Weight: 10
+  - m_Creature: {fileID: 8120223237953414644, guid: fab5f2718daa2c847b896af84b456a41, type: 3}
+    m_Weight: 2
+  - m_Creature: {fileID: 4373163360943354986, guid: 44232f26e046b6544ab8b565243df7c6, type: 3}
+    m_Weight: 1
+  m_SpawnCount: 30
 --- !u!1001 &36179917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3702,26 +3754,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 187495042}
-  - component: {fileID: 187495041}
+  - component: {fileID: 187495043}
   m_Layer: 0
-  m_Name: Task 1
+  m_Name: Task Eradicate 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &187495041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 187495040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 503cc9665b791484184bb57e97609cc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &187495042
 Transform:
   m_ObjectHideFlags: 0
@@ -3737,6 +3777,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 380643369}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &187495043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187495040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b77fa6bc0c8ce94aa03ef68214e2c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Units:
+  - m_Creature: {fileID: 8852991875040718518, guid: 23f5f4e65cd854948ac44bfa0156529a, type: 3}
+    m_Weight: 10
+  - m_Creature: {fileID: 8120223237953414644, guid: fab5f2718daa2c847b896af84b456a41, type: 3}
+    m_Weight: 6
+  - m_Creature: {fileID: 4373163360943354986, guid: 44232f26e046b6544ab8b565243df7c6, type: 3}
+    m_Weight: 3
+  m_SpawnCount: 20
 --- !u!1001 &188652737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7518,7 +7578,6 @@ GameObject:
   m_Component:
   - component: {fileID: 380643369}
   - component: {fileID: 380643368}
-  - component: {fileID: 380643370}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -7540,9 +7599,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Host: {fileID: 54133253}
   m_Tasks:
-  - {fileID: 187495041}
+  - {fileID: 187495043}
   - {fileID: 1085380752}
   - {fileID: 222949607}
+  m_MaxTasks: 3
+  m_TaskCheckTimer: 1
 --- !u!4 &380643369
 Transform:
   m_ObjectHideFlags: 0
@@ -7557,30 +7618,13 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 187495042}
+  - {fileID: 30137620}
+  - {fileID: 1733183533}
+  - {fileID: 547535660}
   - {fileID: 1085380753}
   - {fileID: 222949608}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &380643370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 380643367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b6deb802b273ba4bb9ecf6a80b55f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Units: []
-  m_SpawnTimer: 0
-  m_SpawnAmount: 0
-  m_SpawnArea: {fileID: 0}
-  m_PlayerPosition: {fileID: 0}
-  m_CameraPosition: {fileID: 0}
-  m_SafeDistanceFromObject: 0
-  m_MaxObjects: 0
 --- !u!1001 &381935942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11041,6 +11085,58 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3428714077513893637, guid: 388e537b2f51d5e47984986b170b8ab9, type: 3}
   m_PrefabInstance: {fileID: 546294335}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &547535659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 547535660}
+  - component: {fileID: 547535661}
+  m_Layer: 0
+  m_Name: Task Eradicate 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &547535660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547535659}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 54.62, y: -56.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 380643369}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &547535661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547535659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b77fa6bc0c8ce94aa03ef68214e2c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Units:
+  - m_Creature: {fileID: 8120223237953414644, guid: fab5f2718daa2c847b896af84b456a41, type: 3}
+    m_Weight: 8
+  - m_Creature: {fileID: 4373163360943354986, guid: 44232f26e046b6544ab8b565243df7c6, type: 3}
+    m_Weight: 1
+  - m_Creature: {fileID: 8852991875040718518, guid: 23f5f4e65cd854948ac44bfa0156529a, type: 3}
+    m_Weight: 5
+  m_SpawnCount: 20
 --- !u!1001 &547756494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32842,6 +32938,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6063267663984732126, guid: 0cc04694dec349241bd72e335906a1b5, type: 3}
   m_PrefabInstance: {fileID: 1731021861}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1733183532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1733183533}
+  - component: {fileID: 1733183534}
+  m_Layer: 0
+  m_Name: Task Eradicate 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1733183533
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733183532}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -69.71, y: -22.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 380643369}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1733183534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733183532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b77fa6bc0c8ce94aa03ef68214e2c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Units:
+  - m_Creature: {fileID: 8852991875040718518, guid: 23f5f4e65cd854948ac44bfa0156529a, type: 3}
+    m_Weight: 10
+  - m_Creature: {fileID: 8120223237953414644, guid: fab5f2718daa2c847b896af84b456a41, type: 3}
+    m_Weight: 4
+  m_SpawnCount: 15
 --- !u!1001 &1736365733
 PrefabInstance:
   m_ObjectHideFlags: 0

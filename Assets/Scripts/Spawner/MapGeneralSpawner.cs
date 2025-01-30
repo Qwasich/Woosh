@@ -9,7 +9,12 @@ using UnityEngine;
     public int m_Weight;
 }
 
-public class MapGeneralSpawner : MonoBehaviour
+public interface ISpawnerUtils
+{
+    public void RemoveCharacterFromList(CharacterAnimated c);
+}
+
+public class MapGeneralSpawner : MonoBehaviour, ISpawnerUtils
 {
     [SerializeField] private List<SpawnableUnit> m_Units;
 
@@ -92,7 +97,7 @@ public class MapGeneralSpawner : MonoBehaviour
         float num = 0;
         for (int i = 0; i < index.Length; i++)
         {
-            index[i] = UnityEngine.Random.Range(0,m_MaxWeight * m_Units[i].m_Weight);
+            index[i] = UnityEngine.Random.Range(0f,m_MaxWeight * m_Units[i].m_Weight);
             if (index[i] > num)
             {
                 ind = i;
@@ -103,8 +108,10 @@ public class MapGeneralSpawner : MonoBehaviour
         return ind;
     }
 
-    public void RemoveCharacterFromList(CharacterAnimated c) => m_UnitsOnScene.Remove(c);
-
+    public void RemoveCharacterFromList(CharacterAnimated c)
+    {
+        m_UnitsOnScene.Remove(c);
+    }
 }
 
 

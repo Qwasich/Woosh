@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -30,7 +29,7 @@ public class CharacterAnimated : Character
 
     private Vector3 target;
 
-    private MapGeneralSpawner m_Spawner;
+    private ISpawnerUtils m_Spawner;
 
     protected override void Awake()
     {
@@ -97,7 +96,7 @@ public class CharacterAnimated : Character
         transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z);
     }
 
-    public void SetSpawner(MapGeneralSpawner sp)
+    public void SetSpawner(ISpawnerUtils sp)
     {
         m_Spawner = sp;
     }
@@ -106,6 +105,12 @@ public class CharacterAnimated : Character
     {
         if (m_Spawner != null) m_Spawner.RemoveCharacterFromList(this);
 
+    }
+
+    protected override void OnKill()
+    {
+        ReturnSpawner();
+        base.OnKill();
     }
 
 
