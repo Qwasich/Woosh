@@ -175,3 +175,4 @@ MonoBehaviour:
   m_MaxHealth: 25
   m_IsInvincible: 0
   m_InvincibilityTimer: 0.05
+  m_DamageParticles: {fileID: 0}

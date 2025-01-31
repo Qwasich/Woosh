@@ -35,6 +35,11 @@ public class WeaponPositionReturner : MonoBehaviour
 
     }
 
+    public void Boost(float power)
+    {
+        m_Rb.AddForce(transform.right * power,ForceMode2D.Force);
+    }
+
     private void SetAngleForWeapon()
     {
         //angle = Quaternion.Angle(m_Host.transform.rotation, transform.rotation);

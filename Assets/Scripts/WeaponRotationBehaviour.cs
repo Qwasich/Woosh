@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponRotationBehaviour : MonoBehaviour
 {
@@ -10,12 +11,21 @@ public class WeaponRotationBehaviour : MonoBehaviour
     [SerializeField][Range(0, 10)] private float m_MinDistance = 0.5f;
 
     private int m_ActiveWeaponIndex = 0;
+    public int ActiveWeaponIndex => m_ActiveWeaponIndex;
     private bool m_IsAnySkillActive = false;
 
     [SerializeField] private List<WeaponProperties> m_Weapons;
 
+    [SerializeField] private GameObject m_ActiveArea;
+
     [SerializeField] private Transform m_HostPos;
     [SerializeField] private Transform m_CamPos;
+
+    [SerializeField] private float m_WSCT = 1.5f;
+    private float WSCT;
+
+    [SerializeField] private GameObject[] m_UISwitcher;
+    [SerializeField] private Image[] m_CooldownImages;
 
     private bool m_isWeaponFixed;
     Vector3 posn;
@@ -23,13 +33,18 @@ public class WeaponRotationBehaviour : MonoBehaviour
 
     void Start()
     {
-
+        
         List<Object> m_Weapons = new();
         SetActiveWeapon(0);
     }
 
     private void Update()
     {
+        if (WSCT < m_WSCT)
+        {
+            WSCT += Time.deltaTime;
+            m_CooldownImages[m_ActiveWeaponIndex].fillAmount = 1 - WSCT / m_WSCT;
+        }
         CheckSkillButtons();
         if (!m_IsAnySkillActive) CheckWeaponButtons();
     }
@@ -111,7 +126,14 @@ public class WeaponRotationBehaviour : MonoBehaviour
         m_RotationSpeed = m_Weapons[weapon].Settings.RotationSpeed;
         m_MaxDistance = m_Weapons[weapon].Settings.MaxDistance;
 
+        m_UISwitcher[m_ActiveWeaponIndex].SetActive(false);
+
         m_ActiveWeaponIndex = weapon;
+
+        float dist = m_Weapons[weapon].Settings.MaxDistance;
+
+        m_UISwitcher[m_ActiveWeaponIndex].SetActive(true);
+        m_ActiveArea.transform.localScale = new Vector2(dist * 0.4f, dist * 0.4f);
 
     }
 
@@ -120,8 +142,18 @@ public class WeaponRotationBehaviour : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) { m_isWeaponFixed = true; }
         if (Input.GetMouseButtonUp(0)) { m_isWeaponFixed = false; }
 
-        if (Input.GetKey(KeyCode.Alpha1)) { SetActiveWeapon(0); return; }
-        if (Input.GetKey(KeyCode.Alpha2)) { SetActiveWeapon(1); return; }
+        if (WSCT >= m_WSCT && Input.GetKey(KeyCode.Alpha1) && m_ActiveWeaponIndex != 0)
+        {
+            SetActiveWeapon(0);
+            WSCT = 0;
+            return;
+        }
+        if (WSCT >= m_WSCT && Input.GetKey(KeyCode.Alpha2) && m_ActiveWeaponIndex != 1)
+        {
+            SetActiveWeapon(1);
+            WSCT = 0;
+            return;
+        }
     }
 
     private void CheckSkillButtons()

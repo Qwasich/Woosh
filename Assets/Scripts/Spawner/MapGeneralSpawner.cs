@@ -46,7 +46,7 @@ public class MapGeneralSpawner : MonoBehaviour, ISpawnerUtils
     private void Update()
     {
         m_Timer += Time.deltaTime;
-        if (m_Timer < m_SpawnTimer) return;
+        if (m_Timer < m_SpawnTimer || m_PlayerPosition == null) return;
         if (m_UnitsOnScene.Count == m_UnitsOnScene.Capacity) return;
 
         for (int i = 0; i < m_SpawnAmount; i++)

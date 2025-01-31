@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class PerformAttack : MonoBehaviour
 {
@@ -21,7 +22,10 @@ public class PerformAttack : MonoBehaviour
     private List<Character> m_Target;
     private Character m_Host;
 
-    [HideInInspector]  public Vector3 m_CurrentTarget;
+    [HideInInspector] public Vector3 m_CurrentTarget;
+
+    [SerializeField] protected AudioSource m_Source;
+    [SerializeField] protected AudioClip m_Clip;
 
     private float m_Timer;
 
@@ -56,12 +60,21 @@ public class PerformAttack : MonoBehaviour
             else p.transform.position = m_Host.transform.position;
             p.transform.up = m_Target.First().transform.position - transform.position;
             m_Timer = 0;
+            if (m_Source != null && m_Clip != null)
+            {
+                m_Source.clip = m_Clip;
+                m_Source.Play();
+            }
         }
         else
         {
             m_Target.First().TakeDamage(m_Damage);
             m_Timer = 0;
-
+            if (m_Source != null && m_Clip != null)
+            {
+                m_Source.clip = m_Clip;
+                m_Source.Play();
+            }
             if (m_IsSelfDestrruct) m_Host.TakeDamage(999999);
         }
     }

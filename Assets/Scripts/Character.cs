@@ -32,6 +32,11 @@ public class Character : MonoBehaviour
     protected float m_Timer;
 
     public UnityAction DeathTrigger;
+    public UnityAction DamageTrigger;
+
+    [SerializeField] private GameObject m_DamageParticles;
+    [SerializeField] protected AudioSource m_Source;
+    [SerializeField] protected AudioClip m_Clip;
 
     protected virtual void Awake()
     {
@@ -49,6 +54,13 @@ public class Character : MonoBehaviour
         if (m_CurrentHealth <= 0) return;
         if (damage <= 0) return;
         m_CurrentHealth -= damage;
+        DamageTrigger?.Invoke();
+        if (m_DamageParticles != null) Instantiate(m_DamageParticles,transform.root);
+        if (m_Source != null && m_Clip != null)
+        {
+            m_Source.clip = m_Clip;
+            m_Source.Play();
+        }
         if (m_CurrentHealth <= 0) OnKill();
 
         m_Timer = m_InvincibilityTimer;
@@ -61,6 +73,7 @@ public class Character : MonoBehaviour
         if (heal <= 0) heal = 1;
 
         m_CurrentHealth += heal;
+        DamageTrigger?.Invoke();
         if (m_CurrentHealth > m_MaxHealth) m_CurrentHealth = m_MaxHealth;
 
         return;
@@ -76,6 +89,11 @@ public class Character : MonoBehaviour
     {
         DeathTrigger?.Invoke();
         Destroy(ogj.gameObject);
+    }
+
+    public virtual void MakeInvincible(bool s)
+    {
+        m_IsInvincible = s;
     }
 
 #if UNITY_EDITOR

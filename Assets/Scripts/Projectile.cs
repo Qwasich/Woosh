@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class Projectile : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class Projectile : MonoBehaviour
     [SerializeField] private int m_Damage;
 
     [SerializeField] private int m_MaxLifetime = 3;
+
+    [SerializeField] protected AudioSource m_Source;
+    [SerializeField] protected AudioClip m_Clip;
 
     RaycastHit2D rayHit;
 
@@ -60,6 +64,11 @@ public class Projectile : MonoBehaviour
 
     private void OnLifetimeEnd()
     {
+        if (m_Source != null && m_Clip != null)
+        {
+            m_Source.clip = m_Clip;
+            m_Source.Play();
+        }
         Destroy(gameObject); 
 
     }

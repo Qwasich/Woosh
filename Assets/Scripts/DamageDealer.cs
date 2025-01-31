@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class DamageDealer : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class DamageDealer : MonoBehaviour
 
     [SerializeField] private Transform m_RayPos;
     [SerializeField] private Character m_Host;
+
+    [SerializeField] protected AudioSource m_Source;
+    [SerializeField] protected AudioClip m_Clip;
 
     Character m_LastChar = null;
 
@@ -64,7 +68,17 @@ public class DamageDealer : MonoBehaviour
             {
                 if (Vector2.Distance(transform.position, creat.transform.position) > transform.localScale.x) return;
                 m_LastChar = creat;
+                if(creat == null)
+                {
+                    m_LastChar = null;
+                    return;
+                }
                 (creat as CharacterAnimated).TakeDamage((int)m_CalculatedDamage);
+                if (m_Source != null && m_Clip != null)
+                {
+                    m_Source.clip = m_Clip;
+                    m_Source.Play();
+                }
             }
             if (creat == null) m_LastChar = null;
         }
@@ -74,7 +88,7 @@ public class DamageDealer : MonoBehaviour
     {
         m_CalculatedDamage = m_AverageVelocity * 10;
         if (m_CalculatedDamage > m_MaxDamage) m_CalculatedDamage = m_MaxDamage;
-        else if (m_CalculatedDamage < 1) m_CalculatedDamage = 0;
+        else if (m_CalculatedDamage < 1) m_CalculatedDamage = 1;
         else m_CalculatedDamage = Mathf.FloorToInt(m_CalculatedDamage);
     }
 
