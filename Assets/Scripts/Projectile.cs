@@ -1,6 +1,5 @@
 
 using UnityEngine;
-using static Unity.VisualScripting.Member;
 
 public class Projectile : MonoBehaviour
 {
