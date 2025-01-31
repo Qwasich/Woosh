@@ -177,7 +177,7 @@ MonoBehaviour:
   m_InvincibilityTimer: 0.05
   m_DamageParticles: {fileID: 0}
   m_Source: {fileID: 509278299244187598}
-  m_Clip: {fileID: 8300000, guid: d4cae6bb0470b8f4a82f8e572f0c6c0e, type: 3}
+  m_Clip: {fileID: 0}
 --- !u!1 &8994713376667673856
 GameObject:
   m_ObjectHideFlags: 0

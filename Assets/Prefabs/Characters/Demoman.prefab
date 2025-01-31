@@ -279,7 +279,7 @@ NavMeshAgent:
   m_Height: 1
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 3
+  m_ObstacleAvoidanceType: 1
 --- !u!114 &4373163360943354986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_InvincibilityTimer: 0.5
   m_DamageParticles: {fileID: 4374957352782572271, guid: bfc1febc52215b2488816e331c992f89, type: 3}
   m_Source: {fileID: 3995129029144789379}
-  m_Clip: {fileID: 8300000, guid: 2af1724525269a944affef73aea36d04, type: 3}
+  m_Clip: {fileID: 0}
   m_Agent: {fileID: 8087414415973939589}
   m_Body: {fileID: 3321043716216158028}
   m_Attack: {fileID: 3349067826649845977}
